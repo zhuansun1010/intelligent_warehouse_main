@@ -14,10 +14,10 @@ extern pthread_cond_t cond_analysis;
 extern pthread_cond_t cond_uart_cmd;
 extern pthread_cond_t cond_client_request;
 extern pthread_cond_t cond_infrared;
-extern pthread_cond_t cond_buzzer;
-extern pthread_cond_t cond_led;
+//extern pthread_cond_t cond_buzzer;
+//extern pthread_cond_t cond_led;
 extern pthread_cond_t cond_camera;
-extern pthread_cond_t cond_sms;
+//extern pthread_cond_t cond_sms;
 extern pthread_cond_t cond_refresh;
 extern pthread_cond_t cond_refresh_updata;
 
@@ -27,20 +27,20 @@ extern pthread_mutex_t mutex_analysis;
 extern pthread_mutex_t mutex_uart_cmd;
 extern pthread_mutex_t mutex_client_request;
 extern pthread_mutex_t mutex_infrared;
-extern pthread_mutex_t mutex_buzzer;
-extern pthread_mutex_t mutex_led;
+//extern pthread_mutex_t mutex_buzzer;
+//extern pthread_mutex_t mutex_led;
 extern pthread_mutex_t mutex_camera;
-extern pthread_mutex_t mutex_sms;
+//extern pthread_mutex_t mutex_sms;
 extern pthread_mutex_t mutex_refresh;
 extern pthread_mutex_t mutex_refresh_updata;
 extern pthread_mutex_t mutex_global;
 extern pthread_mutex_t mutex_linklist;
 
 extern int dev_infrared_fd;
-extern int dev_buzzer_fd;
-extern int dev_led_fd;
+//extern int dev_buzzer_fd;
+//extern int dev_led_fd;
 extern int dev_camera_fd;
-extern int dev_sms_fd;
+//extern int dev_sms_fd;
 extern int dev_uart_fd;
 
 extern int msgid;
@@ -70,10 +70,10 @@ void ReleaseResource (int signo)
 	pthread_mutex_destroy (&mutex_global);
 	pthread_mutex_destroy (&mutex_refresh_updata);
 	pthread_mutex_destroy (&mutex_refresh);
-	pthread_mutex_destroy (&mutex_sms);
+//	pthread_mutex_destroy (&mutex_sms);
 	pthread_mutex_destroy (&mutex_camera);
-	pthread_mutex_destroy (&mutex_led);
-	pthread_mutex_destroy (&mutex_buzzer);
+//	pthread_mutex_destroy (&mutex_led);
+//	pthread_mutex_destroy (&mutex_buzzer);
 	pthread_mutex_destroy (&mutex_infrared);
 	pthread_mutex_destroy (&mutex_client_request);
 	pthread_mutex_destroy (&mutex_uart_cmd);
@@ -83,10 +83,10 @@ void ReleaseResource (int signo)
 
 	pthread_cond_destroy (&cond_refresh_updata);
 	pthread_cond_destroy (&cond_refresh);
-	pthread_cond_destroy (&cond_sms);
+//	pthread_cond_destroy (&cond_sms);
 	pthread_cond_destroy (&cond_camera);
-	pthread_cond_destroy (&cond_led);
-	pthread_cond_destroy (&cond_buzzer);
+//	pthread_cond_destroy (&cond_led);
+//	pthread_cond_destroy (&cond_buzzer);
 	pthread_cond_destroy (&cond_infrared);
 	pthread_cond_destroy (&cond_client_request);
 	pthread_cond_destroy (&cond_uart_cmd);
@@ -98,10 +98,10 @@ void ReleaseResource (int signo)
 //	semctl (semid, 1, IPC_RMID, NULL);
 
 	pthread_cancel (id_refresh);
-	pthread_cancel (id_sms);
+//	pthread_cancel (id_sms);
 	pthread_cancel (id_camera);
-	pthread_cancel (id_led);
-	pthread_cancel (id_buzzer);
+//	pthread_cancel (id_led);
+//	pthread_cancel (id_buzzer);
 	pthread_cancel (id_infrared);
 	pthread_cancel (id_client_request);
 	pthread_cancel (id_uart_cmd);
@@ -110,10 +110,10 @@ void ReleaseResource (int signo)
 	pthread_cancel (id_sqlite);
 
 	close (dev_camera_fd);
-	close (dev_led_fd);
-	close (dev_buzzer_fd);
+//	close (dev_led_fd);
+//	close (dev_buzzer_fd);
 	close (dev_infrared_fd);
-	close (dev_sms_fd);
+//	close (dev_sms_fd);
 	close (dev_uart_fd);
 
 	printf ("All quit\n");
@@ -148,10 +148,10 @@ int main(int argc, char **argv)
 	pthread_mutex_init (&mutex_uart_cmd, NULL);
 	pthread_mutex_init (&mutex_client_request, NULL);
 	pthread_mutex_init (&mutex_infrared, NULL);
-	pthread_mutex_init (&mutex_buzzer, NULL);
-	pthread_mutex_init (&mutex_led, NULL);
+//	pthread_mutex_init (&mutex_buzzer, NULL);
+//	pthread_mutex_init (&mutex_led, NULL);
 	pthread_mutex_init (&mutex_camera, NULL);
-	pthread_mutex_init (&mutex_sms, NULL);
+//pthread_mutex_init (&mutex_sms, NULL);
 	pthread_mutex_init (&mutex_refresh, NULL);
 	pthread_mutex_init (&mutex_refresh_updata, NULL);
 	pthread_mutex_init (&mutex_global, NULL);
@@ -162,10 +162,10 @@ int main(int argc, char **argv)
 	pthread_cond_init (&cond_uart_cmd, NULL);
 	pthread_cond_init (&cond_client_request, NULL);
 	pthread_cond_init (&cond_infrared, NULL);
-	pthread_cond_init (&cond_buzzer, NULL);
-	pthread_cond_init (&cond_led, NULL);
+//pthread_cond_init (&cond_buzzer, NULL);
+//	pthread_cond_init (&cond_led, NULL);
 	pthread_cond_init (&cond_camera, NULL);
-	pthread_cond_init (&cond_sms, NULL);
+//	pthread_cond_init (&cond_sms, NULL);
 	pthread_cond_init (&cond_refresh, NULL);
 	pthread_cond_init (&cond_refresh_updata, NULL);
 
@@ -179,10 +179,10 @@ int main(int argc, char **argv)
 	pthread_create (&id_uart_cmd, 0, pthread_uart_cmd, NULL);
 	pthread_create (&id_client_request, 0, pthread_client_request, NULL);
 //	pthread_create (&id_infrared, 0, pthread_infrared, NULL);
-	pthread_create (&id_buzzer, 0, pthread_buzzer, NULL);
-	pthread_create (&id_led, 0, pthread_led, NULL);
+//	pthread_create (&id_buzzer, 0, pthread_buzzer, NULL);
+//	pthread_create (&id_led, 0, pthread_led, NULL);
 	pthread_create (&id_camera, 0, pthread_camera, NULL);
-	pthread_create (&id_sms, 0, pthread_sms, NULL);
+//	pthread_create (&id_sms, 0, pthread_sms, NULL);
 	pthread_create (&id_refresh, 0, pthread_refresh, NULL);
 
 	pthread_join (id_sqlite, NULL);
@@ -197,14 +197,14 @@ int main(int argc, char **argv)
 	printf ("g5\n");
 //	pthread_join (id_infrared, NULL);
 	printf ("g6\n");
-	pthread_join (id_buzzer, NULL);
+//	pthread_join (id_buzzer, NULL);
 	printf ("g7\n");
-	pthread_join (id_led, NULL);
+//	pthread_join (id_led, NULL);
 	printf ("g8\n");
 	pthread_join (id_camera, NULL);
 	printf ("g9\n");
-	pthread_join (id_sms, NULL);
-	printf ("g10\n");
+//	pthread_join (id_sms, NULL);
+//printf ("g10\n");
 	pthread_join (id_refresh, NULL);
 	printf ("g11\n");
 
